@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>묘연</title>
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+    <h1 class="about-title">묘        연</h1>
+
+    <div class="carousel-container">
+        <button class="nav-arrow left">‹</button>
+        <div class="carousel-track">
+            <div class="card" data-index="1">
+                <img src="https://search.pstatic.net/common?type=b&size=600&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2FprofileImg%2F61173f6d-8b40-489f-86b6-54aabc18bc9f.jpg" alt="yena">
+            </div>
+            <div class="card" data-index="2">
+                <img src="https://search.pstatic.net/common?type=f&size=152x152&expire=1&refresh=true&quality=100&direct=true&src=https%3A%2F%2Fmusicmeta-phinf.pstatic.net%2Falbum%2F032%2F498%2F32498378.jpg%3Ftype%3Dr204Fll%26v%3D20241219144035" alt="titel">
+            </div>
+        </div>
+        <button class="nav-arrow right">›</button>
+    </div>
+
+    <div class="member-info">
+        <h2 class="member-name">David Kim</h2>
+        <p class="member-role">Founder</p>
+    </div>
+
+    <div class="dots">
+        <div class="dot" data-index="1"></div>
+        <div class="dot" data-index="2"></div>
+    </div>
+
+    <!-- JS -->
+    <script th:src="@{/carousel.js}"></script>
+</body>
+</html>
