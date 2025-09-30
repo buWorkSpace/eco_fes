@@ -1,0 +1,208 @@
+.login-background {
+  position: relative;
+  width: 100%;   
+  height: 979px;   
+  margin: 0 auto;  
+  overflow: hidden;
+}
+
+/* 그라데이션 전체 배경 */
+.bg-gradient {
+  position: absolute;
+  width: 100%;
+  height: auto;
+}
+
+.bg-decor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;     
+  z-index: 1;       
+}
+
+.login-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1131px;
+  height: 724px;
+  display: flex;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+  z-index: 2;
+}
+
+/* 왼쪽 영역: 이미지 */
+.login-popup-left {
+  flex: 0 0 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-popup-left .brand-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 오른쪽 영역: 로그인 폼 */
+.login-popup-right {
+  flex: 0 0 50%;
+  background: #fff;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.login-popup-right h2 {
+  font-size: 40px;
+  font-weight: 400;
+  font-family: 'MBC1961', sans-serif;
+  display: inline-block;         
+  background-image: linear-gradient(
+    180deg,
+    #66E6DF 0%,
+    #6FDFF0 54%,
+    #6BCBFF 100%
+  );
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  color: transparent;                    
+  position: absolute;
+  top: 16%;
+  right: 57%;
+  transform: translateX(50%);
+  margin: 0;
+  text-align: center;
+  width: auto;
+}
+
+.login-popup-right p {
+  position: absolute;
+  top: 24%;
+  right: 57%;
+  transform: translateX(50%);
+  font-size: 15px;
+  color: #898989;
+  margin: 0;
+  text-align: center;
+  width: auto;
+}
+
+
+/* 로그인 라벨,인풋,연동로그인 묶어둔거 */
+.login-bottom {
+  margin-top: 120px;
+
+}
+
+.login-popup-right label {
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: #2A2A2A;
+  display: block;
+}
+
+.login-popup-right input {
+  width: 440px;         
+  height: 45px;       
+  margin-bottom: 18px;
+  padding: 0 16px;      
+  border: 1px solid #989898;
+  border-radius: 20px;  
+}
+
+.login-btn {
+  font-family: 'MBC1961', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  width: 475px;
+  height: 48px;
+  border: none;
+  border-radius: 20px;
+  background: #15B7FF;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 16px;
+  padding: 0 16px;      
+}
+
+.password-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+
+/* 눈 아이콘 */
+.password-field .toggle-password {
+  cursor: pointer;
+  width: 20px;  
+  height: 12px; 
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  margin-left: -37px;
+  margin-bottom: 5px;
+}
+
+
+/* 연동 로그인 */
+
+.social-title {
+  position: relative;
+  text-align: center;
+  font-size: 14px;
+  color: #9A9A9A;
+  margin: 8px 0 18px;
+  right: 45px;
+  top: 40px;
+}
+.social-title::before,
+.social-title::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: #E6E6E6;
+}
+.social-title::before { left: 0; transform: translateY(-50%); }
+.social-title::after  { right: 0; transform: translateY(-50%); }
+
+
+.social-buttons {
+  display: flex;              /* flex 박스로 전환 */
+  justify-content: center;    /* 가운데 정렬 */
+  margin-top: 20px;           /* 위쪽 여백 */
+}
+
+/* Social login icon buttons */
+.social-btn-kakao,
+.social-btn-google,
+.social-btn-apple {
+  display: flex;
+  width: 100px;
+  height: 55px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 55px;
+  margin-right: 45px;
+}
+
+
+
+

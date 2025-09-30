@@ -1,0 +1,127 @@
+.banner {
+  position: relative;  
+}
+
+.banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.banner::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(
+    to bottom,                           
+    rgba(244, 245, 246, 0) 0%,           
+    rgba(77, 77, 77, 0.61) 52%,          
+    rgba(47, 47, 47, 1) 100%             
+  );
+  z-index: 0;  
+}
+
+.banner-text {
+  position: absolute;
+  top: 174px;              
+  left: 78px;
+  transform: none;         
+  text-align: left;        
+  max-width: 60%;          
+  z-index: 1; 
+}
+
+.banner-text h1 {
+  font-weight: 500;
+  font-size: 80px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  margin: 0;
+  font-family: 'MBC1961', sans-serif;
+}
+
+.banner-text h1:first-of-type {
+  color: #ffffff;
+}
+
+.banner .banner-text h1:last-of-type {
+  background: linear-gradient(
+    to right,
+    #90FFF9 0%,
+    #4CD6E7 54%,
+    #56CBFF 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+.banner-text p {
+  font-weight: 400;        
+  font-size: 16px;
+  line-height: 24px;       
+  letter-spacing: 0;       
+  color: #ffffff;
+  text-align: left;       
+  margin-top: 30px;
+}
+
+.sign-go {
+  font-family: 'MBC1961', sans-serif;
+  font-size: 16px;
+  margin-top: 50px;
+  position: absolute;
+  max-width: 199px;
+  width: 100%;
+  height: 48px;
+  z-index: 1;  
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 20px;
+  border: none;
+  background-color: #15B7FF;
+  margin-right: 78px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.sign-go .arrow-icon {
+  width: 15x;
+  height: 15px;
+  object-fit: contain;
+}
+
+@media (max-width: 480px) {
+  .banner-text {
+    top: 26%;           
+    left: 16px;
+    transform: translateY(0);
+    max-width: 88%;
+  }
+
+  .banner-text h1 {
+    font-size: 30px;    
+    line-height: 1.1;
+  }
+
+  .banner-text p {
+    font-size: 13px;
+    line-height: 19px;
+    margin-top: 10px;
+  }
+
+  /* 배너 안 버튼 */
+  .sign-go {
+    position: absolute;   /* 배너 안에 고정 */
+    left: 16px;
+    top: calc(26% + 140px);
+    width: 150px;
+    height: 40px;
+    font-size: 14px;
+    margin: 0;
+  }
+
+}

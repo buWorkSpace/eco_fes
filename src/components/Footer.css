@@ -1,0 +1,60 @@
+.footer {
+  background: #414951;      
+  color: #ffffff;
+  width: 100%;
+}
+
+.footer-inner {
+  max-width: 1440px;
+  height: 253px;            
+  margin: 0 auto;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  align-items: center;      
+  gap: 20px;
+  text-align: center;
+}
+
+.footer-note,
+.footer-fonts,
+.footer-copy {
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  font-weight: 400;
+  font-size: 14px;           
+  line-height: 22px;
+  color: #f1f1f1;
+  margin: 0;
+}
+
+.footer-fonts {
+  max-width: 960px;         
+}
+
+.footer-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.4);
+  border: none;
+  margin: 0;
+}
+
+.footer-copy {
+  font-size: 13px;
+  color: #e0e0e0;
+}
+
+@media (max-width: 480px) {
+  .footer-inner {
+    height: auto;            
+    padding: 24px 16px;
+    gap: 16px;
+  }
+  .footer-note,
+  .footer-fonts,
+  .footer-copy {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
