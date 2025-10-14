@@ -4,7 +4,8 @@
             "recog_id":1000,
             "id":"str1-1",
             "ps":"str1-2",
-            "nic":"str1-3"
+            "nic":"str1-3",
+            "phone": "010-1234-5678"
         },
         {
             "recog_id":1001,

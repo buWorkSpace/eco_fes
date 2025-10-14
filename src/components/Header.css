@@ -39,6 +39,11 @@
     font-size: 16px;
 }
 
+/* 내비 버튼 눌렸을때 컬러 바뀌는거 */
+.nav button.active {
+  color: #0AD2C8;
+}
+
 .auth {
     align-items: center;
     display: flex;

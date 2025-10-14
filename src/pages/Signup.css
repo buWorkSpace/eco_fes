@@ -1,0 +1,220 @@
+.signup-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 560px;
+  height: auto;
+  display: flex;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+  z-index: 2;
+  background: #ffffff;
+}
+
+
+.signup-popup h2 {
+  font-size: 40px;
+  font-weight: 400;
+  font-family: 'MBC1961', sans-serif;
+  display: inline-block;         
+  background-image: linear-gradient(
+    180deg,
+    #66E6DF 0%,
+    #6FDFF0 54%,
+    #6BCBFF 100%
+  );
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  color: transparent;                    
+  position: absolute;
+  top: 6%;         
+  left: 50%;
+  transform: translateX(-50%); /* 가로 중앙 정렬 */
+  margin: 0;
+  text-align: center;
+  width: auto;
+}
+
+
+.signup-popup p {
+  position: absolute;
+  top: 13%;
+  right: 50%;
+  transform: translateX(50%);
+  font-size: 15px;
+  color: #898989;
+  margin: 0;
+  text-align: center;
+  width: auto;
+}
+
+/* 회원가입 라벨,인풋,연동회원가입 묶어둔거 */
+.signup-bottom {
+  margin-top: 140px;
+  flex-direction: column;
+  margin-left: 50px;
+}
+
+
+.signup-popup label {
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: #2A2A2A;
+  display: block;
+}
+
+.signup-popup input {
+  width: 454px;         
+  height: 45px;       
+  margin-bottom: 18px;
+  padding: 0 16px;      
+  border: 1px solid #989898;
+  border-radius: 20px;  
+}
+
+.signup-btn {
+  font-family: 'MBC1961', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  width: 454px;
+  height: 48px;
+  border: none;
+  border-radius: 20px;
+  background: #15B7FF;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 16px;
+  
+}
+
+/* 인풋이랑 버튼 크기 맞추기 */
+.signup-popup input,
+.signup-btn {
+  box-sizing: border-box;
+  display: block;
+}
+
+.password-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+
+/* 눈 아이콘 */
+.password-field2 {
+  position: relative;     
+  display: flex;
+  align-items: center;
+}
+
+.password-field2 .toggle-password2 {
+  position: absolute;   
+  width: 20px;
+  height: 12px;   
+  right: 16px;            
+  top: 35%;               
+  transform: translateY(-50%);
+  z-index: 2;
+  cursor: pointer;
+}
+
+
+/* 이용약관 동의 체크 박스 */
+.terms {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 12px 0 24px;
+  font-size: 15px;
+  color: #9B9B9B;
+  cursor: pointer;
+}
+
+/* 겹쳐진 이미지 컨테이너 */
+.checkbox {
+  position: relative;
+  width: 18px;   /* 피그마 박스 크기에 맞춰 조정 */
+  height: 18px;
+}
+
+/* 회색 박스 이미지 */
+.box-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 파란 체크 이미지 (기본 숨김) */
+.check-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* 체크된 상태에서만 보이게 */
+.check-img.visible {
+  opacity: 1;
+}
+
+.sign-social-title {
+  position: relative;     /* 반드시 있어야 함 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 0;         /* 중앙 기준으로 다시 맞춤 */
+
+  font-size: 14px;
+  color: #9A9A9A;
+  margin: 8px 0 18px;
+  top: 25px;
+}
+
+.sign-social-title::before,
+.sign-social-title::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: #E6E6E6;
+  transform: translateY(-50%);
+}
+
+.sign-social-title::before { left: 0; }
+.sign-social-title::after  { right: 0; }
+
+
+.sign-social-buttons {
+  display: flex;             
+  justify-content: center;    
+  margin-top: 20px; 
+  margin-left: 50px;
+  margin-bottom: 40px;
+}
+
+.sign-social-btn-kakao,
+.sign-social-btn-google,
+.sign-social-btn-naver {
+  display: flex;
+  width: 100px;
+  height: 55px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 40px;
+  margin-right: 20px;
+}

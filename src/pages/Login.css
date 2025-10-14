@@ -1,3 +1,4 @@
+/* 로그인, 회원가입 배경 클래스명 같음 */
 .login-background {
   position: relative;
   width: 100%;   
@@ -22,15 +23,16 @@
   z-index: 1;       
 }
 
+
 .login-popup {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 1131px;
-  height: 724px;
+  height: auto;
   display: flex;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 24px 60px rgba(0,0,0,0.25);
   z-index: 2;
@@ -183,15 +185,15 @@
 
 
 .social-buttons {
-  display: flex;              /* flex 박스로 전환 */
-  justify-content: center;    /* 가운데 정렬 */
-  margin-top: 20px;           /* 위쪽 여백 */
+  display: flex;             
+  justify-content: center;    
+  margin-top: 20px; 
+  margin-right: 30px;
 }
 
-/* Social login icon buttons */
 .social-btn-kakao,
 .social-btn-google,
-.social-btn-apple {
+.social-btn-naver {
   display: flex;
   width: 100px;
   height: 55px;
@@ -200,7 +202,7 @@
   cursor: pointer;
   padding: 0;
   margin-top: 55px;
-  margin-right: 45px;
+  margin-right: 20px;
 }
 
 

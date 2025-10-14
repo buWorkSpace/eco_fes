@@ -12,7 +12,7 @@ import eye from "../assets/icons/eye.png"; //비번 보이게 하는 아이콘
 
 import kakaoicon from "../assets/icons/kakaoicon.png"; //연동로그인 아이콘
 import googleicon from "../assets/icons/googleicon.png"; //연동로그인 아이콘
-import appleicon from "../assets/icons/appleicon.png"; //연동로그인 아이콘
+import navericon from "../assets/icons/navericon.png"; //연동로그인 아이콘
 
 
 
@@ -110,8 +110,8 @@ const Login = () => {
               <button type="button" className="social-btn-kakao">
                 <img src={kakaoicon} alt="카카오 로그인" />
               </button>
-              <button type="button" className="social-btn-apple">
-                <img src={appleicon} alt="애플 로그인" />
+              <button type="button" className="social-btn-naver">
+                <img src={navericon} alt="네이버 로그인" />
               </button>
               <button type="button" className="social-btn-google">
                 <img src={googleicon} alt="구글 로그인" />
