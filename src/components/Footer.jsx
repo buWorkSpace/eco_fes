@@ -1,3 +1,5 @@
+//푸터
+
 import React from "react";
 import "./Footer.css";
 

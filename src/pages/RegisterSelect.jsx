@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import "./RegisterSelect.css";
 import Header from "../components/Header";
 
-import back from "../assets/images/login-back.png"; // 그라데이션 배경
 import back3 from "../assets/images/back3.png"; // 물품등록 데코 배경
 
 import recipt from "../assets/images/recipt.png"; //영수증 등록
@@ -19,10 +18,8 @@ const RegisterSelect = () => {
     <>
     <Header />
 
-    <div className="login-background">
-        {/* 배경 두 장 */}
-        <img src={back} alt="gradient bg" className="bg-gradient" />
-        <img src={back3} alt="decor bg" className="bg-decor" />
+    <div className="select-background">
+        <img src={back3} alt="decor bg" className="back3" />
 
     <div className="register-select">
       <h2>물품 등록하기</h2>
@@ -57,8 +54,7 @@ const RegisterSelect = () => {
           <button
               type="button"
               className="pen-go-btn"
-              // 수기 등록 페이지 만들고 경로 변경해야함!
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/register-manual")}
             >
               수기로 등록
             </button>

@@ -1,1 +1,282 @@
 /* 물품 수기 등록 페이지 */
+
+main.manual-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4px 24px;
+  margin-top: 100px;
+}
+
+.manual-title {
+  font-family: 'MBC1961', sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  margin-bottom: 12px;
+  z-index: 2;
+}
+
+.manual-title {
+  margin: 0;
+}
+
+.manual-divider {
+  margin: 12px 0 24px;
+  border: 0;
+  height: 1px;
+  background: #E6E6E6;
+}
+
+.manual-section,
+.manual-field {
+
+  padding-top: 25px;
+  padding-bottom: 25px;
+  position: relative;
+}
+
+.manual-section::after,
+.manual-field::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #E6E6E6;
+}
+
+.manual-label {
+  display: block;
+  margin-bottom: 8px;
+}
+.manual-label small { color: #9B9B9B; }
+
+/* 이미지 업로드 */
+.img-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* 211×198 크기의 이미지 타일 그리드 (한 줄에 5장) */
+.img-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 211px);
+  grid-auto-rows: 198px;
+  gap: 12px;
+}
+
+/* 각 이미지 타일 박스 */
+.img-card {
+  width: 211px;
+  height: 198px;
+  border: 1px solid #E6E6E6;
+  background: #FFFFFF;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+/* 타일 내부 실제 이미지 */
+.img-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 이미지 추가 버튼: 라벨 컨테이너 */
+.img-add-btn {
+  display: flex;
+  justify-content: center; 
+  align-items: center;   
+  width: 211px;
+  height: 198px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  border: 1px solid #E6E6E6;
+}
+
+/* 플러스 아이콘 이미지 자체 */
+.img-add-icon {
+  width: 108px;
+  height: 108px;
+  object-fit: contain;
+  display: block;
+}
+
+/* 썸네일 이미지 (리스트 안) */
+.img-thumb {
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+  display: block;
+  border: 1px solid #E6E6E6;
+  background: #FFF;
+}
+
+
+.img-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #fff;
+  display: block;
+}
+
+.img-placeholder {
+  width: 210px;
+  height: 200px;
+  background: #F2F2F2;
+  border: 1px solid #DDD;
+  display: grid;
+  place-items: center;
+  color: #BBB;
+  font-size: 14px;
+}
+.btn-upload {
+  font-family: 'MBC1961', sans-serif;
+  display: inline-block;
+  padding: 16px 16px;
+  border-radius: 20px;
+  background: #0AD2C8;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 8px;
+}
+#image { display: none; }
+
+/* 이미지 삭제 버튼 (타일 우측 상단) */
+.img-del-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: none; 
+  background: rgba(217, 217, 217, 0.5); /* D9D9D9 @ 50% */
+  color: #FFFFFF; 
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.img-del-btn:hover {
+  background: rgba(217, 217, 217, 0.8);
+}
+
+/* 물품명 입력 + 글자수 카운트 */
+.name-row { position: relative; }
+.input {
+  width: 100%;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 20px;
+  border: 1px solid #989898;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.name-count {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9B9B9B;
+  font-size: 12px;
+}
+
+/* 구매일자 3분할 */
+.date-inputs { display: flex; gap: 10px; }
+.date-inputs .date-input {
+  flex: 0 0 120px;
+  height: 44px;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid #989898;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+/* 수량 */
+.qty-row { display: flex; align-items: center; gap: 8px; }
+.qty-input {
+  width: 120px;
+  height: 44px;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid #989898;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.qty-unit { color: #777; }
+
+/* 설명 */
+.desc-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid #989898;
+  resize: vertical;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+/* 하단 버튼 영역 */
+.btn-prev, .btn-draft {
+  width: 100px;
+  height: 48px;
+  border-radius: 20px;
+  border: 2px solid #15B7FF;    
+  background: #FFFFFF;
+  color: #15B7FF;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'MBC1961', sans-serif;
+}
+
+.btn-prev:hover, .btn-draft:hover {
+  background: #EAF7FF;
+  border-color: #0A9FD9;
+}
+
+.btn-submit {
+  width: 100px;
+  height: 48px;
+  border-radius: 20px;
+  border: none;
+  background: #15B7FF;
+  color: #fff;
+  font-size: 16px;
+  font-family: 'MBC1961', sans-serif;
+}
+
+.manual-footer {
+  position: fixed;      
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 105px;        
+  background: rgba(217, 217, 217, 0.5);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 40px;
+  padding: 0 120px;
+  z-index: 1000;        
+}
+
+/* 폼 내용이 가려지지 않게 */
+main.manual-wrap {
+  padding-bottom: 140px; 
+}

@@ -1,11 +1,10 @@
+// 회원가입
+
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Signup.css";
 import Header from "../components/Header";
 import proto from "../assets/data/proto.json";
-
-import back from "../assets/images/login-back.png"; // 그라데이션 배경
-import back2 from "../assets/images/login-back2.png"; // 데코 배경
 
 import eye from "../assets/icons/eye.png"; // 비번 표시 아이콘
 
@@ -129,9 +128,6 @@ const Signup = () => {
     <>
       <Header />
       <div className="login-background">
-        {/* 배경 두 장 */}
-        <img src={back} alt="gradient bg" className="bg-gradient" />
-        <img src={back2} alt="decor bg" className="bg-decor" />
 
         {/* 회원가입 팝업 */}
         <div className="signup-popup">

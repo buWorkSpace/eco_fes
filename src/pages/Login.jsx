@@ -1,11 +1,12 @@
+//로그인
+
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import Header from "../components/Header";
 import proto from "../assets/data/proto.json";
 
-import back from "../assets/images/login-back.png"; //그라데이션
-import back2 from "../assets/images/login-back2.png"; //데코레이션
+import back1 from "../assets/images/back1.png"
 import loginPop from "../assets/images/login-popup.png"; //로그인 팝업 이미지
 
 import eye from "../assets/icons/eye.png"; //비번 보이게 하는 아이콘
@@ -58,8 +59,7 @@ const Login = () => {
       <Header />
       <div className="login-background">
         {/* 배경 두 장 */}
-        <img src={back} alt="gradient bg" className="bg-gradient" />
-        <img src={back2} alt="decor bg" className="bg-decor" />
+        <img src={back1} className="back1" />
 
         {/* 로그인 팝업 */}
         <div className="login-popup">
