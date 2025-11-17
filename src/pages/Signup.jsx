@@ -4,7 +4,6 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Signup.css";
 import Header from "../components/Header";
-import proto from "../assets/data/proto.json";
 
 import eye from "../assets/icons/eye.png"; // 비번 표시 아이콘
 
@@ -14,6 +13,11 @@ import check from '../assets/icons/check.png';
 import kakaoicon from "../assets/icons/kakaoicon.png";
 import googleicon from "../assets/icons/googleicon.png";
 import navericon from "../assets/icons/navericon.png";
+
+// API 주소 변수화: URL 확정 시 이 값만 변경
+const API_BASE_URL = "http://localhost:8080"; 
+const REGISTER_ENDPOINT = "/api/main/user/register";
+
 const Signup = () => {
   const navigate = useNavigate();
 
@@ -57,8 +61,8 @@ const Signup = () => {
   };
 
 
-  // 회원가입 처리 (프로토 + 로컬 병합 후 중복 체크)
-  const handleSignup = (e) => {
+  // 회원가입 처리 (API 호출)
+  const handleSignup = async (e) => {
     e.preventDefault();
     setMsg("");
 
@@ -87,41 +91,39 @@ const Signup = () => {
       return;
     }
 
-    // 기존 사용자 리스트: proto.user + localStorage('users')
-    const localUsers = JSON.parse(localStorage.getItem("users") || "[]");
-    const baseUsers = Array.isArray(proto?.user) ? proto.user : [];
-    const allUsers = [...baseUsers, ...localUsers];
-
-    // 중복 검사: 아이디/전화번호 중복 불가
-    // const dupId = allUsers.some((u) => u.id === form.id);
-    // if (dupId) return setMsg("이미 사용 중인 아이디입니다.");
-
-    // const phoneDigits = form.phone.replace(/\D/g, "");
-    // const dupPhone = allUsers.some((u) => (u.phone || "").replace(/\D/g, "") === phoneDigits);
-    // if (dupPhone) return setMsg("이미 등록된 전화번호입니다.");
-
-    // 신규 사용자 레코드 생성 (임시 recog_id)
-    const newUser = {
-      recog_id: Date.now(), // 간단한 임시 키
-      id: form.id,
-      ps: form.ps,
-      nic: form.nic,
-      phone: form.phone,
+    // API 요청 payload (명세서 구조 준수)
+    const payload = {
+      user: [
+        {
+          recog_id: 1000,
+          id: form.id,
+          ps: form.ps,
+          nic: form.nic,
+          // 전화번호(phone) 필요하면 추가
+        }
+      ]
     };
 
-    // 로컬 사용자 배열에 추가 저장h
-    const nextLocal = [...localUsers, newUser];
-    localStorage.setItem("users", JSON.stringify(nextLocal));
+    try {
+      const fullUrl = API_BASE_URL + REGISTER_ENDPOINT; 
+      
+      const response = await fetch(fullUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
 
-    // 자동 로그인 처리 및 이동
-    localStorage.setItem("authUser", JSON.stringify({
-      recog_id: newUser.recog_id,
-      id: newUser.id,
-      nic: newUser.nic,
-      token: "MOCK_TOKEN"
-    }));
-
-    navigate("/signup-complete");
+      if (response.ok) {
+        navigate("/signup-complete");
+      } else {
+        const errorData = await response.json();
+        setMsg(errorData.message || "회원가입에 실패했습니다.");
+      }
+    } catch (error) {
+      setMsg("서버와 통신 중 오류가 발생했습니다.");
+    }
   };
 
   return (
@@ -206,9 +208,9 @@ const Signup = () => {
 
              <div className="terms" onClick={() => setForm({ ...form, terms: !form.terms })}>
               <div className="checkbox">
-                <img src={box} alt="박스" className="box-img"/>
+                <img src={box} alt="이용약관 동의 체크박스" className="box-img"/>
                 
-                <img src={check} alt="체크" className={`check-img ${form.terms ? "visible" : ""}`}/>
+                <img src={check} alt="체크 표시" className={`check-img ${form.terms ? "visible" : ""}`}/>
               </div>
               <span>이용약관에 동의합니다.</span>
             </div>

@@ -7,6 +7,11 @@ import './RegisterManual.css';
 import imagesPlus from '../../assets/images/images_plus.png';
 
 
+//API 주소 변수화: URL 확정 시 이 값만 변경
+const API_BASE_URL = "http://localhost:8080"; 
+const REGISTER_MANUAL_ENDPOINT = "/api/regi/selt_input";
+
+
 const MAX_NAME_LEN = 20;
 const pad2 = (n) => String(n || '').padStart(2, '0');
 const buildDate = (y, m, d) => `${y || ''}-${pad2(m)}-${pad2(d)}`;
@@ -25,6 +30,9 @@ const RegisterManual = () => {
     imageFiles: [],
   });
 
+  //사용자 피드백 메시지 상태 추가 (alert 대체)
+  const [statusMsg, setStatusMsg] = useState('');
+
   const [previewUrls, setPreviewUrls] = useState([]);
   const urlsRef = useRef([]);
   useEffect(() => {
@@ -33,6 +41,8 @@ const RegisterManual = () => {
 
   const onChange = (e) => {
     const { name, value } = e.target;
+    setStatusMsg(''); // 입력 시작 시 메시지 초기화
+
     if (name === 'name') {
       // 최대 20자 제한
       setForm((f) => ({ ...f, name: value.slice(0, MAX_NAME_LEN) }));
@@ -83,26 +93,29 @@ const RegisterManual = () => {
     // 간단 임시저장 (로컬스토리지)
     const draft = { ...form, imageFile: undefined };
     localStorage.setItem('manualDraft', JSON.stringify(draft));
-    alert('임시저장 완료');
+    // alert('임시저장 완료'); 
+    setStatusMsg('✅ 임시 저장되었습니다.');
   };
 
   const submit = async (e) => {
     e.preventDefault();
+    setStatusMsg(''); // 등록 시도 시 메시지 초기화
 
     // Basic validation
-    if (!form.name?.trim()) return alert('물품명을 입력해 주세요.');
-    if (!form.place?.trim()) return alert('거래장소를 입력해 주세요.');
+    if (!form.name?.trim()) return setStatusMsg('물품명을 입력해 주세요.');
+    if (!form.place?.trim()) return setStatusMsg('거래장소를 입력해 주세요.');
 
     const buy_date = buildDate(form.year, form.month, form.day);
     if (!/^\d{4}-\d{2}-\d{2}$/.test(buy_date)) {
-      return alert('구매일자를 YYYY-MM-DD 형식으로 입력해 주세요.');
+      return setStatusMsg('구매일자를 YYYY-MM-DD 형식(예: 2025-05-15)으로 입력해 주세요.');
     }
-
+    
+    // 💡 API 명세서에 따른 payload 구조
     const payload = {
-      obj_id: 2001, // TODO: 서버에서 생성되면 제거
+      obj_id: 2001, // 명세서 요구
       obj_name: form.name,
       buy_date,
-      expiration_date: [],
+      expiration_date: [], // 명세서 요구 (데이터가 없으면 빈 배열 전송)
       donor_id: 'str1',   // TODO: 로그인 사용자 정보로 교체
       buyer_id: 'str2',   // TODO: 로그인 사용자 정보로 교체
       locate: form.place,
@@ -110,7 +123,9 @@ const RegisterManual = () => {
     };
 
     try {
-      const res = await fetch('/api/regi/selt_input', {
+      const fullUrl = API_BASE_URL + REGISTER_MANUAL_ENDPOINT; 
+
+      const res = await fetch(fullUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -120,11 +135,13 @@ const RegisterManual = () => {
       const data = await res.json().catch(() => ({}));
 
       console.log('등록 성공', data);
-      alert('등록이 완료되었습니다!');
+      setStatusMsg('등록이 완료되었습니다!');
+      // alert('등록이 완료되었습니다!'); 
       navigate('/register-complete');
     } catch (err) {
       console.error('등록 실패', err);
-      alert('등록 중 오류가 발생했습니다. 콘솔을 확인해 주세요.');
+      // alert('등록 중 오류가 발생했습니다. 콘솔을 확인해 주세요.'); 
+      setStatusMsg('등록 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
     }
   };
 
@@ -194,9 +211,9 @@ const RegisterManual = () => {
           <section className="manual-field">
             <div className="manual-label">물품 구매일자</div>
             <div className="date-inputs">
-              <input name="month" value={form.month} onChange={onChange} placeholder="month" inputMode="numeric" maxLength={2} className="date-input" />
-              <input name="day" value={form.day} onChange={onChange} placeholder="day" inputMode="numeric" maxLength={2} className="date-input" />
-              <input name="year" value={form.year} onChange={onChange} placeholder="year" inputMode="numeric" maxLength={4} className="date-input" />
+              <input name="month" value={form.month} onChange={onChange} placeholder="월(MM)" inputMode="numeric" maxLength={2} className="date-input" />
+              <input name="day" value={form.day} onChange={onChange} placeholder="일(DD)" inputMode="numeric" maxLength={2} className="date-input" />
+              <input name="year" value={form.year} onChange={onChange} placeholder="년(YYYY)" inputMode="numeric" maxLength={4} className="date-input" />
             </div>
           </section>
 
@@ -230,6 +247,13 @@ const RegisterManual = () => {
               className="desc-textarea"
             />
           </section>
+          
+          {/* 상태 메시지 출력 */}
+          {statusMsg && (
+            <div className={`status-message ${statusMsg.startsWith('✅') ? 'success' : 'error'}`}>
+              {statusMsg}
+            </div>
+          )}
 
           {/* 하단 버튼 영역 */}
           <div className="manual-footer">
