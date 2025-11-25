@@ -1,0 +1,235 @@
+/* MyPage.css */
+/* --- 배너 영역 --- */
+.mypage-banner-area {
+    height: 261px; 
+    margin-bottom: 80px; 
+    position: relative;
+}
+
+/* 배너 이미지 스타일 */
+.mypage-banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0; 
+}
+
+.banner-text-position {
+    position: absolute;
+    top: 20px;
+    left: 150px; /* 왼쪽에서 50px 떨어진 곳에 배치 */
+    transform: translateY(-50%); 
+    text-align: left;
+    z-index: 1; /* 이미지 위에 배치 */
+}
+
+/* 기존 banner-title 제거, banner-subtitle에 직접 스타일 적용 */
+.banner-subtitle {
+    color: #ffffff; 
+    font-size: 14px;
+    margin-top: 5px;
+    margin: 0; /* 불필요한 마진 제거 */
+}
+
+/* --- 프로필 섹션 --- */
+.mypage-profile-section {
+    text-align: center;
+    position: relative;
+    margin-top: -160px; 
+}
+
+.profile-image-wrapper {
+    display: inline-block;
+    width: 167.72px;
+    height: 167.72px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid white; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #eee;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nickname-divider {
+    width: 416px; /* 시안에 보이는 선의 너비를 대략적으로 지정 */
+    height: 1px;
+    background-color: #C9C9C9; /* 시안의 외곽선 색상 C9C9C9 참고 */
+    margin: 15px auto 15px auto; /* 위아래 간격과 중앙 정렬 */
+}
+
+.profile-nickname {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    color: #333;
+    font-family: 'MBC1961', sans-serif;
+}
+
+.profile-stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.profile-stats span {
+    white-space: nowrap; 
+}
+
+/* --- 물품 목록 섹션 --- */
+.mypage-content-section {
+    padding: 0 20px;
+}
+
+.list-label {
+    display: inline-flex; 
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 48px;
+    background-color: #15B7FF; 
+    color: #ffffff;
+    border-radius: 20px;
+    font-family: 'MBC1961', sans-serif;
+    font-size: 16px;
+    margin-bottom: 10px;
+    margin-left: 150px;
+}
+
+.list-divider {
+    max-width: 1120px;
+    height: 1px;
+    background-color: #C9C9C9; 
+    margin-bottom: 30px; 
+    margin: 0 auto 30px auto; 
+}
+
+.product-list-grid {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: flex-start;
+    padding-bottom: 10px;
+    padding-left: 150px;
+    gap: 20px;
+}
+
+/* --- 물품 아이템 --- */
+.product-item {
+    width: 193px; 
+    height: 286px;
+    background: white;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    border: 1px solid #eee;
+    flex-shrink: 0;
+}
+
+.product-image-container {
+    width: 193px;
+    height: 193px; 
+    position: relative;
+    overflow: hidden;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.transaction-complete-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none; 
+}
+
+
+
+.product-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 3px;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-meta {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 5px;
+}
+
+.product-location {
+    margin-right: 10px;
+    font-weight: 500;
+    color: #555;
+}
+.product-status-text {
+    font-size: 14px;
+    color: #777;
+}
+
+.no-items-message {
+    padding: 50px 0;
+    text-align: center;
+    width: 100%;
+    color: #777;
+}
+
+/* --- 하단 '나의 정보 수정하기' 버튼 영역 --- */
+.mypage-bottom-action-area {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 80px; 
+}
+
+.edit-profile-btn {
+    width: 520px; 
+    height: 48px;
+    padding: 0; 
+    background-color: #15B7FF; 
+    color: white;
+    border: none;
+    border-radius: 20px; 
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: 'MBC1961', sans-serif;
+    box-shadow: 0 4px 6px rgba(21, 183, 255, 0.3);
+}
+
+.edit-profile-btn:hover {
+    background-color: #0088cc;
+}
+
+/* 로딩 메시지 스타일 */
+.mypage-container.loading {
+    text-align: center;
+    padding: 100px;
+    font-size: 18px;
+    color: #777;
+}

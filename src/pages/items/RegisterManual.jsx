@@ -1,4 +1,5 @@
 // 물품 수기 등록 페이지 
+//이미지 빼고 보내짐
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';

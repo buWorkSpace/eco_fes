@@ -7,6 +7,8 @@ import SignupComplete from './pages/SignupComplete'; //회원가입 완료페이
 import RegisterSelect from './pages/RegisterSelect'; //물품등록 선택페이지
 import RegisterManual from './pages/items/RegisterManual'; //물품 수기등록 페이지
 import RegisterComplete from './pages/items/RegisterComplete'; //물품등록 완료 페이지
+import MyPage from './pages/MyPage'; //마이페이지
+import EditProfile from './pages/EditProfile'; //나의 정보 수정 페이지
 
 const App = () => {
   return (
@@ -18,6 +20,8 @@ const App = () => {
       <Route path="/register-select" element={<RegisterSelect />} />
       <Route path="/register-manual" element={<RegisterManual />} />
       <Route path="/register-complete" element={<RegisterComplete />} />
+      <Route path="/mypage" element={<MyPage />} />
+      <Route path='/edit-profile' element={<EditProfile />} />
     </Routes>
   );
 };
