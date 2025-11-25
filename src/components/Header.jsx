@@ -30,7 +30,7 @@ const Header = () => {
                 물품 등록
             </button>
             <button 
-                onClick={() => handleNavClick("/ItemList")} 
+                onClick={() => handleNavClick("/items")} 
                 className={pathname === "/ItemList" ? "active" : ""}
             >
                 나눔 받기

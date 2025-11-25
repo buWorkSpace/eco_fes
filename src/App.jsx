@@ -9,6 +9,9 @@ import RegisterManual from './pages/items/RegisterManual'; //물품 수기등록
 import RegisterComplete from './pages/items/RegisterComplete'; //물품등록 완료 페이지
 import MyPage from './pages/MyPage'; //마이페이지
 import EditProfile from './pages/EditProfile'; //나의 정보 수정 페이지
+import ItemList from './pages/ItemList';
+import ItemDetail from './pages/ItemDetail';
+import ItemDonor from './pages/ItemDonor';
 
 const App = () => {
   return (
@@ -22,6 +25,9 @@ const App = () => {
       <Route path="/register-complete" element={<RegisterComplete />} />
       <Route path="/mypage" element={<MyPage />} />
       <Route path='/edit-profile' element={<EditProfile />} />
+      <Route path="/items" element={<ItemList />} />
+      <Route path="/items/:id" element={<ItemDetail />} />
+      <Route path="/items/:id/donor" element={<ItemDonor />} />
     </Routes>
   );
 };
