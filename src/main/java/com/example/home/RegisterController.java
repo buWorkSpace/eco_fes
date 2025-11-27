@@ -1,8 +1,6 @@
-package com.example.home.controller;
+package com.example.home;
 
 import com.example.home.dto.RegisterRequest;
-import com.example.home.service.UserService;
-import com.example.home.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,37 +20,31 @@ public class RegisterController {
         List<RegisterRequest.UserDto> list = request.getUser();
 
         if (list == null || list.isEmpty()) {
-            return ResponseEntity.badRequest().body(
-                    java.util.Map.of("message", "user 배열을 전달해 주세요.")
-            );
+            return ResponseEntity.badRequest().body(java.util.Map.of("message", "user 배열을 전달해 주세요."));
         }
 
         RegisterRequest.UserDto dto = list.get(0);
 
-        if (dto.getRecogId() == null || dto.getId() == null || dto.getPs() == null || dto.getNic() == null) {
-            return ResponseEntity.badRequest().body(
-                    java.util.Map.of("message", "필수 항목 누락")
-            );
+        if (dto.getId() == null || dto.getPs() == null || dto.getNic() == null) {
+            return ResponseEntity.badRequest().body(java.util.Map.of("message", "필수 항목 누락"));
         }
 
         try {
+            // 프론트에서 recog_id가 없으므로 userService.registerUser(String...)
             User saved = userService.registerUser(
-                    dto.getRecogId(),
                     dto.getId(),
                     dto.getPs(),
-                    dto.getNic()
+                    dto.getNic(),
+                    dto.getPhone()
             );
 
-            return ResponseEntity.ok(
-                    java.util.Map.of(
-                            "message", "회원가입 성공",
-                            "recog_id", saved.getRecogId()
-                    )
-            );
+            return ResponseEntity.ok(java.util.Map.of("message", "회원가입 성공", "userSeq", saved.getUserSeq()));
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(
-                    java.util.Map.of("message", e.getMessage())
-            );
+            return ResponseEntity.badRequest().body(java.util.Map.of("message", e.getMessage()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(java.util.Map.of("message", "서버 오류"));
         }
     }
+    
 }
