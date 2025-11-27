@@ -57,7 +57,7 @@ const Login = () => {
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem("authUser", JSON.stringify(data));
-        navigate("/home");
+        navigate("/");
       } else {
         // 서버에서 응답은 왔으나 로그인 실패 처리된 경우 (400, 401 등)
         setMsg("로그인 실패 (아이디/비밀번호 확인)");
