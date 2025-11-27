@@ -29,12 +29,14 @@ const Header = () => {
             >
                 물품 등록
             </button>
+
             <button 
                 onClick={() => handleNavClick("/items")} 
                 className={pathname === "/ItemList" ? "active" : ""}
             >
                 나눔 받기
             </button>
+            
             <button 
                 onClick={() => handleNavClick("/mypage")} 
                 className={pathname === "/mypage" ? "active" : ""}

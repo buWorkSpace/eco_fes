@@ -9,9 +9,9 @@ import MyPageBannerImage from "../assets/images/mypage_banner.png";
 // API 통신 기준 URL
 const API_BASE_URL = "http://localhost:8080"; 
 
-//백엔드 연결하면 더미 데이터 삭제
+// 💡 [수정됨] 백엔드 변수명(nic)에 맞춰 더미 데이터도 nic으로 변경
 const DUMMY_USER_INFO = {
-  nickname: "민주님",
+  nic: "민주님", // nickname -> nic
   tradeCount: 2,
   visitCount: 101,
   monthsSinceJoin: 6,
@@ -23,9 +23,6 @@ const DUMMY_REG_LIST = [
   { id: 2, name: "소떡소떡 3개", status: "거래완료", timeAgo: "3시간전", location: "백석동", imageUrl: "/assets/images/sample-item-2.jpg" },
   { id: 3, name: "찐 고구마 2개", status: "거래완료", timeAgo: "4주전", location: "백석동", imageUrl: "/assets/images/sample-item-3.jpg" },
 ];
-// -------------------------------
-
-
 
 const MyPage = () => {
   const navigate = useNavigate();
@@ -58,10 +55,7 @@ const MyPage = () => {
     );
   };
 
-
-
-
-  //API 엔드포인트 적용
+  // API 엔드포인트 적용
   useEffect(() => {
     const fetchMyPageData = async () => {
       try {
@@ -80,6 +74,7 @@ const MyPage = () => {
         const regiRes = await fetch(`${API_BASE_URL}/api/mypage/regi_list`);
         if (regiRes.ok) {
             const realRegiData = await regiRes.json();
+            // API 명세서에 따라 리스트가 obj 안에 있다면 .obj 사용
             setRegiList(realRegiData.obj || realRegiData); 
         } else {
             console.error("등록 물품 목록 로드 실패. DUMMY 데이터 사용.");
@@ -88,14 +83,13 @@ const MyPage = () => {
 
       } catch (error) {
         console.error("네트워크 에러 발생:", error);
-        // 네트워크 연결 자체에 문제가 있을 경우, 더미 데이터로 대체
         setUserInfo(DUMMY_USER_INFO);
         setRegiList(DUMMY_REG_LIST);
       }
     };
 
     fetchMyPageData();
-  }, []); // 빈 배열: 컴포넌트가 처음 마운트될 때 한 번만 실행
+  }, []); 
 
 
   const handleEditProfile = () => {
@@ -130,14 +124,14 @@ const MyPage = () => {
         <div className="mypage-profile-section">
           <div className="profile-image-wrapper">
             <img 
-              src={userInfo.profileImage} 
+              src={userInfo.profileImage || "/assets/images/sample-profile.jpg"} 
               alt="프로필 이미지" 
               className="profile-image" 
             />
           </div>
-          <h2 className="profile-nickname">{userInfo.nickname}</h2>
           
-          {/* 닉네임 하단 구분선 */}
+          <h2 className="profile-nickname">{userInfo.nic}</h2>
+          
           <div className="nickname-divider"></div> 
           <div className="profile-stats">
             <span>거래내역 {userInfo.tradeCount}회</span>
@@ -148,12 +142,9 @@ const MyPage = () => {
         
         {/* 물품 목록 섹션 */}
         <div className="mypage-content-section">
-          
           <div className="list-label">등록한 물품</div>
-
           <div className="list-divider"></div>
 
-          {/* 물품 목록 그리드 */}
           <div className="product-list-grid">
             {regiList.length > 0 ? (
               regiList.map((item) => (
@@ -167,7 +158,6 @@ const MyPage = () => {
           </div>
         </div>
         
-        {/* 나의 정보 수정하기 버튼 영역 */}
         <div className="mypage-bottom-action-area">
           <button 
             className="edit-profile-btn" 
