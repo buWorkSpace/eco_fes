@@ -95,7 +95,6 @@ const Signup = () => {
     const payload = {
       user: [
         {
-          recog_id: 1000,
           id: form.id,
           ps: form.ps,
           nic: form.nic,
